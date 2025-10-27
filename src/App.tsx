@@ -23,36 +23,71 @@ function SectionCard({
   );
 }
 
-function IconLight(){
+function IconLight() {
   return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
       <defs>
-        <linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stopColor="#FFD54F"/><stop offset="1" stopColor="#FFC107"/></linearGradient>
+        <linearGradient id="lg1" x1="0" x2="1">
+          <stop offset="0" stopColor="#FFD54F" />
+          <stop offset="1" stopColor="#FFC107" />
+        </linearGradient>
       </defs>
       <path d="M9 21h6" stroke="#6b4" strokeWidth="0" fill="none" />
-      <path d="M12 3a5 5 0 00-3 9v2a1 1 0 001 1h4a1 1 0 001-1v-2a5 5 0 00-3-9z" fill="url(#lg1)" />
+      <path
+        d="M12 3a5 5 0 00-3 9v2a1 1 0 001 1h4a1 1 0 001-1v-2a5 5 0 00-3-9z"
+        fill="url(#lg1)"
+      />
       <circle cx="12" cy="9" r="1.2" fill="#fff" opacity="0.9" />
     </svg>
   );
 }
 
-function IconGear(){
+function IconGear() {
   return (
-    <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
       <defs>
-        <linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stopColor="#FDE68A"/><stop offset="1" stopColor="#F59E0B"/></linearGradient>
+        <linearGradient id="lg2" x1="0" x2="1">
+          <stop offset="0" stopColor="#FDE68A" />
+          <stop offset="1" stopColor="#F59E0B" />
+        </linearGradient>
       </defs>
       <path d="M12 15.5A3.5 3.5 0 1112 8.5a3.5 3.5 0 010 7z" fill="url(#lg2)" />
-      <path d="M19.4 13a7.2 7.2 0 000-2l2.1-1.6a.5.5 0 00.12-.64l-2-3.5a.5.5 0 00-.6-.22l-2.5 1a7.6 7.6 0 00-1.7-.98L14.6 2.4a.5.5 0 00-.5-.4h-4a.5.5 0 00-.5.4L8.6 5.4c-.6.2-1.1.5-1.7.98l-2.5-1a.5.5 0 00-.6.22l-2 3.5a.5.5 0 00.12.64L4.6 11a7.2 7.2 0 000 2L2.5 14.6a.5.5 0 00-.12.64l2 3.5c.14.24.45.34.7.22l2.5-1c.5.4 1.1.7 1.7.98l.9 2.9c.08.25.32.4.58.4h4c.26 0 .5-.15.58-.4l.9-2.9c.6-.2 1.2-.5 1.7-.98l2.5 1c.25.12.56.02.7-.22l2-3.5a.5.5 0 00-.12-.64L19.4 13z" fill="#D97706" opacity="0.9" />
+      <path
+        d="M19.4 13a7.2 7.2 0 000-2l2.1-1.6a.5.5 0 00.12-.64l-2-3.5a.5.5 0 00-.6-.22l-2.5 1a7.6 7.6 0 00-1.7-.98L14.6 2.4a.5.5 0 00-.5-.4h-4a.5.5 0 00-.5.4L8.6 5.4c-.6.2-1.1.5-1.7.98l-2.5-1a.5.5 0 00-.6.22l-2 3.5a.5.5 0 00.12.64L4.6 11a7.2 7.2 0 000 2L2.5 14.6a.5.5 0 00-.12.64l2 3.5c.14.24.45.34.7.22l2.5-1c.5.4 1.1.7 1.7.98l.9 2.9c.08.25.32.4.58.4h4c.26 0 .5-.15.58-.4l.9-2.9c.6-.2 1.2-.5 1.7-.98l2.5 1c.25.12.56.02.7-.22l2-3.5a.5.5 0 00-.12-.64L19.4 13z"
+        fill="#D97706"
+        opacity="0.9"
+      />
     </svg>
   );
 }
 
-function IconChart(){
+function IconChart() {
   return (
-    <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
       <defs>
-        <linearGradient id="lg3" x1="0" x2="1"><stop offset="0" stopColor="#F87171"/><stop offset="1" stopColor="#C62828"/></linearGradient>
+        <linearGradient id="lg3" x1="0" x2="1">
+          <stop offset="0" stopColor="#F87171" />
+          <stop offset="1" stopColor="#C62828" />
+        </linearGradient>
       </defs>
       <rect x="3" y="12" width="3" height="7" rx="0.5" fill="url(#lg3)" />
       <rect x="9" y="8" width="3" height="11" rx="0.5" fill="url(#lg3)" />
@@ -70,32 +105,36 @@ export default function App() {
   }, []);
 
   // parallax mouse move
-  useEffect(()=>{
-  const el = containerRef.current;
-  if(!el) return;
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
     let raf = 0;
-    function onMove(e: MouseEvent){
+    function onMove(e: MouseEvent) {
       const el2 = containerRef.current;
-      if(!el2) return;
+      if (!el2) return;
       const rect = el2.getBoundingClientRect();
-      const x = (e.clientX - rect.left) - rect.width/2;
-      const y = (e.clientY - rect.top) - rect.height/2;
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(()=>{
-        el2.style.setProperty('--gear-x', String(x * 0.03));
-        el2.style.setProperty('--gear-y', String(y * 0.02));
+      raf = requestAnimationFrame(() => {
+        el2.style.setProperty("--gear-x", String(x * 0.03));
+        el2.style.setProperty("--gear-y", String(y * 0.02));
       });
     }
-    function onScroll(){
+    function onScroll() {
       const el2 = containerRef.current;
-      if(!el2) return;
+      if (!el2) return;
       const s = window.scrollY || window.pageYOffset;
-      el2.style.setProperty('--gear-scroll', String(s * 0.02));
+      el2.style.setProperty("--gear-scroll", String(s * 0.02));
     }
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('scroll', onScroll, {passive:true});
-    return ()=>{ window.removeEventListener('mousemove', onMove); window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
-  },[]);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   // quiz state
   const [answer, setAnswer] = useState<string | null>(null);
@@ -115,28 +154,59 @@ export default function App() {
       } min-h-screen site-hero relative overflow-hidden py-20 px-6 sm:px-8 lg:px-16`}
       style={{
         // expose css vars for parallax
-        ['--gear-x' as any]: 0,
-        ['--gear-y' as any]: 0,
-        ['--gear-scroll' as any]: 0,
+        ["--gear-x" as any]: 0,
+        ["--gear-y" as any]: 0,
+        ["--gear-scroll" as any]: 0,
       }}
     >
       {/* decorative blobs */}
       {/* animated SVG gears (parallax + rotate) */}
       <div className="hero-gears parallax-transform" aria-hidden>
-        <svg className="gear-shadow gear--slow" width="420" height="420" viewBox="0 0 420 420" style={{position:'absolute', left:'-6%', top:'-8%', transform:`translate3d(calc(var(--gear-x) * -1px), calc(var(--gear-y) * -1px),0) rotate(0deg)`}}>
+        <svg
+          className="gear-shadow gear--slow"
+          width="420"
+          height="420"
+          viewBox="0 0 420 420"
+          style={{
+            position: "absolute",
+            left: "-6%",
+            top: "-8%",
+            transform: `translate3d(calc(var(--gear-x) * -1px), calc(var(--gear-y) * -1px),0) rotate(0deg)`,
+          }}
+        >
           <g>
             <circle cx="210" cy="210" r="100" fill="url(#gGear1)" />
           </g>
           <defs>
-            <linearGradient id="gGear1" x1="0" x2="1"><stop offset="0" stopColor="#ffd54f"/><stop offset="1" stopColor="#f59e0b"/></linearGradient>
+            <linearGradient id="gGear1" x1="0" x2="1">
+              <stop offset="0" stopColor="#ffd54f" />
+              <stop offset="1" stopColor="#f59e0b" />
+            </linearGradient>
           </defs>
         </svg>
-        <svg className="gear--fast" width="180" height="180" viewBox="0 0 180 180" style={{position:'absolute', right:'6%', top:'6%', transform:`translate3d(calc(var(--gear-x) * 0.5px), calc(var(--gear-y) * 0.6px),0)`}}>
+        <svg
+          className="gear--fast"
+          width="180"
+          height="180"
+          viewBox="0 0 180 180"
+          style={{
+            position: "absolute",
+            right: "6%",
+            top: "6%",
+            transform: `translate3d(calc(var(--gear-x) * 0.5px), calc(var(--gear-y) * 0.6px),0)`,
+          }}
+        >
           <defs>
-            <linearGradient id="gGear2" x1="0" x2="1"><stop offset="0" stopColor="#ef4444"/><stop offset="1" stopColor="#b91c1c"/></linearGradient>
+            <linearGradient id="gGear2" x1="0" x2="1">
+              <stop offset="0" stopColor="#ef4444" />
+              <stop offset="1" stopColor="#b91c1c" />
+            </linearGradient>
           </defs>
           <g>
-            <path d="M90 45a45 45 0 100 90 45 45 0 000-90z" fill="url(#gGear2)" />
+            <path
+              d="M90 45a45 45 0 100 90 45 45 0 000-90z"
+              fill="url(#gGear2)"
+            />
           </g>
         </svg>
       </div>
@@ -475,23 +545,6 @@ export default function App() {
           <div className="mb-4">
             Nhóm: [Tên nhóm] • Trường: [Tên trường] • Giảng viên hướng dẫn: [Tên
             GV]
-          </div>
-          <div className="flex items-center justify-center gap-3">
-            <a
-              className="px-4 py-2 rounded-md bg-red-700 text-white hover:bg-red-800"
-              href="/Chương 4_ Cạnh tranh và độc quyền trong nền kinh tế thị trường.txt"
-              download
-            >
-              Tải tài liệu
-            </a>
-            <button
-              className="px-4 py-2 rounded-md border border-slate-200"
-              onClick={() =>
-                alert("PDF export chưa được tích hợp trong bản demo này.")
-              }
-            >
-              Xuất PDF
-            </button>
           </div>
         </footer>
       </div>
