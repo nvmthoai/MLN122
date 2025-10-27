@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function SectionCard({
   title,
@@ -23,12 +23,79 @@ function SectionCard({
   );
 }
 
+function IconLight(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <defs>
+        <linearGradient id="lg1" x1="0" x2="1"><stop offset="0" stopColor="#FFD54F"/><stop offset="1" stopColor="#FFC107"/></linearGradient>
+      </defs>
+      <path d="M9 21h6" stroke="#6b4" strokeWidth="0" fill="none" />
+      <path d="M12 3a5 5 0 00-3 9v2a1 1 0 001 1h4a1 1 0 001-1v-2a5 5 0 00-3-9z" fill="url(#lg1)" />
+      <circle cx="12" cy="9" r="1.2" fill="#fff" opacity="0.9" />
+    </svg>
+  );
+}
+
+function IconGear(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <defs>
+        <linearGradient id="lg2" x1="0" x2="1"><stop offset="0" stopColor="#FDE68A"/><stop offset="1" stopColor="#F59E0B"/></linearGradient>
+      </defs>
+      <path d="M12 15.5A3.5 3.5 0 1112 8.5a3.5 3.5 0 010 7z" fill="url(#lg2)" />
+      <path d="M19.4 13a7.2 7.2 0 000-2l2.1-1.6a.5.5 0 00.12-.64l-2-3.5a.5.5 0 00-.6-.22l-2.5 1a7.6 7.6 0 00-1.7-.98L14.6 2.4a.5.5 0 00-.5-.4h-4a.5.5 0 00-.5.4L8.6 5.4c-.6.2-1.1.5-1.7.98l-2.5-1a.5.5 0 00-.6.22l-2 3.5a.5.5 0 00.12.64L4.6 11a7.2 7.2 0 000 2L2.5 14.6a.5.5 0 00-.12.64l2 3.5c.14.24.45.34.7.22l2.5-1c.5.4 1.1.7 1.7.98l.9 2.9c.08.25.32.4.58.4h4c.26 0 .5-.15.58-.4l.9-2.9c.6-.2 1.2-.5 1.7-.98l2.5 1c.25.12.56.02.7-.22l2-3.5a.5.5 0 00-.12-.64L19.4 13z" fill="#D97706" opacity="0.9" />
+    </svg>
+  );
+}
+
+function IconChart(){
+  return (
+    <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <defs>
+        <linearGradient id="lg3" x1="0" x2="1"><stop offset="0" stopColor="#F87171"/><stop offset="1" stopColor="#C62828"/></linearGradient>
+      </defs>
+      <rect x="3" y="12" width="3" height="7" rx="0.5" fill="url(#lg3)" />
+      <rect x="9" y="8" width="3" height="11" rx="0.5" fill="url(#lg3)" />
+      <rect x="15" y="4" width="3" height="15" rx="0.5" fill="url(#lg3)" />
+    </svg>
+  );
+}
+
 export default function App() {
   const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
     return () => clearTimeout(t);
   }, []);
+
+  // parallax mouse move
+  useEffect(()=>{
+  const el = containerRef.current;
+  if(!el) return;
+    let raf = 0;
+    function onMove(e: MouseEvent){
+      const el2 = containerRef.current;
+      if(!el2) return;
+      const rect = el2.getBoundingClientRect();
+      const x = (e.clientX - rect.left) - rect.width/2;
+      const y = (e.clientY - rect.top) - rect.height/2;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(()=>{
+        el2.style.setProperty('--gear-x', String(x * 0.03));
+        el2.style.setProperty('--gear-y', String(y * 0.02));
+      });
+    }
+    function onScroll(){
+      const el2 = containerRef.current;
+      if(!el2) return;
+      const s = window.scrollY || window.pageYOffset;
+      el2.style.setProperty('--gear-scroll', String(s * 0.02));
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    return ()=>{ window.removeEventListener('mousemove', onMove); window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+  },[]);
 
   // quiz state
   const [answer, setAnswer] = useState<string | null>(null);
@@ -42,29 +109,37 @@ export default function App() {
 
   return (
     <div
+      ref={containerRef}
       className={`${
         mounted ? "is-mounted" : ""
       } min-h-screen site-hero relative overflow-hidden py-20 px-6 sm:px-8 lg:px-16`}
+      style={{
+        // expose css vars for parallax
+        ['--gear-x' as any]: 0,
+        ['--gear-y' as any]: 0,
+        ['--gear-scroll' as any]: 0,
+      }}
     >
       {/* decorative blobs */}
-      <svg
-        className="absolute -left-16 -top-16 w-96 h-96 blob floaty"
-        viewBox="0 0 200 200"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden
-      >
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1">
-            <stop offset="0" stopColor="#0ea5a4" />
-            <stop offset="1" stopColor="#3b82f6" />
-          </linearGradient>
-        </defs>
-        <path
-          fill="url(#g1)"
-          d="M42.8,-63.6C58.9,-56.6,75.7,-46.3,82.7,-31.1C89.7,-15.9,86.8,4.1,78.4,24.2C69.9,44.3,55.8,64.3,35.5,72.2C15.1,80.1,-11.8,75.8,-32.5,64.1C-53.1,52.5,-67.5,33.6,-70.9,12.8C-74.3,-8,-66.8,-30.7,-51.2,-39.8C-35.5,-48.9,-11.8,-44.4,8.9,-48.6C29.6,-52.9,48.1,-67.2,42.8,-63.6Z"
-          transform="translate(100 100)"
-        />
-      </svg>
+      {/* animated SVG gears (parallax + rotate) */}
+      <div className="hero-gears parallax-transform" aria-hidden>
+        <svg className="gear-shadow gear--slow" width="420" height="420" viewBox="0 0 420 420" style={{position:'absolute', left:'-6%', top:'-8%', transform:`translate3d(calc(var(--gear-x) * -1px), calc(var(--gear-y) * -1px),0) rotate(0deg)`}}>
+          <g>
+            <circle cx="210" cy="210" r="100" fill="url(#gGear1)" />
+          </g>
+          <defs>
+            <linearGradient id="gGear1" x1="0" x2="1"><stop offset="0" stopColor="#ffd54f"/><stop offset="1" stopColor="#f59e0b"/></linearGradient>
+          </defs>
+        </svg>
+        <svg className="gear--fast" width="180" height="180" viewBox="0 0 180 180" style={{position:'absolute', right:'6%', top:'6%', transform:`translate3d(calc(var(--gear-x) * 0.5px), calc(var(--gear-y) * 0.6px),0)`}}>
+          <defs>
+            <linearGradient id="gGear2" x1="0" x2="1"><stop offset="0" stopColor="#ef4444"/><stop offset="1" stopColor="#b91c1c"/></linearGradient>
+          </defs>
+          <g>
+            <path d="M90 45a45 45 0 100 90 45 45 0 000-90z" fill="url(#gGear2)" />
+          </g>
+        </svg>
+      </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         <header className="flex items-center justify-between mb-10">

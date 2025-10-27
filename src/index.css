@@ -202,6 +202,10 @@ body {
   opacity: 0.85;
 }
 
+/* Gears & Parallax */
+@keyframes rotateCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotateCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+
 .gradient-text {
   background-image: linear-gradient(90deg, var(--accent), #3b82f6);
   -webkit-background-clip: text;
@@ -212,6 +216,20 @@ body {
 /* mount trigger */
 .is-mounted .fade-delay-1 {
   animation-delay: 120ms;
+}
+
+.hero-gears{ position: absolute; inset:0; pointer-events:none; display:block; transform-style:preserve-3d; }
+.hero-gears svg{ will-change: transform; transform-origin: center center; }
+.gear--fast{ animation: rotateCW 6s linear infinite; }
+.gear--slow{ animation: rotateCCW 12s linear infinite; }
+.gear-shadow{ filter: drop-shadow(0 12px 24px rgba(0,0,0,0.12)); }
+
+:root{ --gear-x: 0; --gear-y: 0; --gear-scroll: 0; }
+.parallax-transform{ transform: translate3d(calc(var(--gear-x) * 1px), calc(var(--gear-y) * 1px), 0) translateY(calc(var(--gear-scroll) * 1px)); }
+
+/* reduce motion safety */
+@media (prefers-reduced-motion: reduce){
+  .gear--fast, .gear--slow { animation: none; }
 }
 .is-mounted .fade-delay-2 {
   animation-delay: 240ms;
