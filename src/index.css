@@ -2,4 +2,233 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root { height: 100%; }
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* Custom site styles */
+:root {
+  --accent: #0ea5a4; /* teal-500 */
+}
+
+body {
+  font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.site-hero {
+  --primary: #c62828; /* red */
+  --gold: #ffd54f;
+  --cream: #fafafa;
+  background: linear-gradient(180deg, var(--cream) 0%, #fffaf6 60%);
+  color: #1f2937;
+}
+
+.decor-accent {
+  background: linear-gradient(
+    90deg,
+    rgba(14, 165, 164, 1),
+    rgba(59, 130, 246, 1)
+  );
+}
+
+.prose-custom h2 {
+  font-family: "Playfair Display", serif;
+}
+
+/* Design tokens */
+.decor-accent {
+  background: linear-gradient(90deg, var(--primary), #8b0000);
+}
+.gradient-text {
+  background-image: linear-gradient(90deg, var(--primary), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Animations and decorative utilities */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.blob {
+  filter: blur(40px) saturate(120%);
+  opacity: 0.9;
+}
+
+.card-hover {
+  transition: transform 0.32s ease, box-shadow 0.32s ease;
+}
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.card-3d:hover {
+  transform: rotateX(6deg) rotateY(-6deg) translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.timeline {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.timeline-item {
+  scroll-snap-align: start;
+}
+
+.net-node {
+  transition: transform 0.2s ease;
+}
+.net-node:hover {
+  transform: scale(1.06);
+}
+
+/* split panels */
+.split-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02));
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.split-left {
+  background: linear-gradient(180deg, #fffef8, #fff6e6);
+  padding: 2rem;
+}
+.split-right {
+  background: linear-gradient(180deg, #fff6f6, rgba(255, 214, 79, 0.04));
+  padding: 2rem;
+}
+
+/* quiz */
+.quiz-option {
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+.quiz-option:hover {
+  transform: translateY(-4px);
+}
+
+/* delays */
+.is-mounted .fade-delay-1 {
+  animation-delay: 120ms;
+}
+.is-mounted .fade-delay-2 {
+  animation-delay: 240ms;
+}
+.is-mounted .fade-delay-3 {
+  animation-delay: 360ms;
+}
+
+@media (max-width: 1024px) {
+  .split-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .floaty {
+    animation: none;
+  }
+}
+
+/* Animations and decorative utilities */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.blob {
+  filter: blur(36px) saturate(120%);
+  opacity: 0.85;
+}
+
+.gradient-text {
+  background-image: linear-gradient(90deg, var(--accent), #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* mount trigger */
+.is-mounted .fade-delay-1 {
+  animation-delay: 120ms;
+}
+.is-mounted .fade-delay-2 {
+  animation-delay: 240ms;
+}
+.is-mounted .fade-delay-3 {
+  animation-delay: 360ms;
+}
+
+/* small utility */
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up,
+  .floaty {
+    animation: none;
+  }
+}
